@@ -12,6 +12,8 @@ import SceneKit
 import QuartzCore
 import SpriteKit
 
+var sideTapped: String?
+
 func sceneKit(scnView: SCNView){
     
     let scene = SCNScene()
