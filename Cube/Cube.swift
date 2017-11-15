@@ -11,6 +11,8 @@ import SceneKit
 import QuartzCore
 import SpriteKit
 
+var sideTapped: String?
+
 func sceneKit(scnView: SCNView){
     
     let scene = SCNScene()
@@ -54,7 +56,7 @@ func sceneKit(scnView: SCNView){
 }
 
 
-func cubeHitTesting(touch: Any?, sceneView: SCNView)
+func cubeHitTesting(touch: Any?, sceneView: SCNView){
         if let touchPoint = touch?.location(in: sceneView),
             let hitTestResult = sceneView.hitTest(touchPoint, options: nil).first {
             let result = hitTestResult
@@ -76,4 +78,26 @@ func cubeHitTesting(touch: Any?, sceneView: SCNView)
             print(faceNodeName)
             sideTapped = faceNodeName
         }
+}
 
+func cubeNavigation(VC1: String, VC2: String, VC3: String, VC4: String, VC5: String, VC6: String, navController: UINavigationController, storyBoard: UIStoryboard){
+    if sideTapped == "front"{
+        navController.pushViewController(storyBoard.instantiateViewController(withIdentifier: VC1) as UIViewController, animated: true)
+        print("front")
+    } else if sideTapped == "right" {
+        navController.pushViewController(storyBoard.instantiateViewController(withIdentifier: VC2) as UIViewController, animated: true)
+        print("right")
+    } else if sideTapped == "left"{
+        navController.pushViewController(storyBoard.instantiateViewController(withIdentifier: VC3) as UIViewController, animated: true)
+        print("front")
+    } else if sideTapped == "back" {
+        navController.pushViewController(storyBoard.instantiateViewController(withIdentifier: VC4) as UIViewController, animated: true)
+        print("right")
+    } else if sideTapped == "top"{
+        navController.pushViewController(storyBoard.instantiateViewController(withIdentifier: VC5) as UIViewController, animated: true)
+        print("front")
+    } else if sideTapped == "bottom" {
+        navController.pushViewController(storyBoard.instantiateViewController(withIdentifier: VC6) as UIViewController, animated: true)
+        print("right")
+    }
+}
