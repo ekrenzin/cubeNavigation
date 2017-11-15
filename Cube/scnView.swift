@@ -54,4 +54,26 @@ func sceneKit(scnView: SCNView){
 }
 
 
+func cubeHitTesting(touch: Any?, sceneView: SCNView)
+        if let touchPoint = touch?.location(in: sceneView),
+            let hitTestResult = sceneView.hitTest(touchPoint, options: nil).first {
+            let result = hitTestResult
+            let node = result.node
+            //find the side
+            // Find the material for the clicked element
+            // (Indices match between the geometryElements and materials arrays)
+            let material = node.geometry!.materials[result.geometryIndex]
+            // Do something with that material, for example:
+            let highlight = CABasicAnimation(keyPath: "diffuse.contents")
+            highlight.toValue = UIColor.red
+            highlight.duration = 1.0
+            highlight.autoreverses = true
+            highlight.isRemovedOnCompletion = true
+            material.addAnimation(highlight, forKey: nil)
+            //utilizing the face enum then dropping the first 27 characters to remove the bloatza
+            let faceNodeName = "\(CubeFace(rawValue: result.geometryIndex)!)"
+            faceNodeName.dropFirst(27)
+            print(faceNodeName)
+            sideTapped = faceNodeName
+        }
 
