@@ -41,7 +41,7 @@ class ViewController: UIViewController, UINavigationBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         cubeHitTesting(touch: touch, sceneView: sceneView)
         }
